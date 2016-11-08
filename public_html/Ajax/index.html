@@ -20,7 +20,20 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.js"></script>
     <script>
       $(document).ready(function(){
-          console.log('jQuery works');
+        $('#search').keyup(function(){
+          var search = $('#search').val();
+        
+          $.ajax({
+            url: 'search.php',
+            data: {search:search},
+            type: 'POST',
+            success: function(data){
+              if(!data.error){
+                $('#result').html(data);      
+              }    
+            }  
+          });    
+        });
       })    
     </script>
   </body>
