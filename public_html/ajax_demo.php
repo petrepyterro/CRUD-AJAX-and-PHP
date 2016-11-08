@@ -14,7 +14,8 @@ and open the template in the editor.
       function init(){    
           var theObject = new XMLHttpRequest();
 
-          theObject.open("GET", "javascript.php", true);
+          theObject.open("POST", "javascript.php", true);
+          theObject.setRequestHeader("Content-type", "application/x-www-form-urlencoded")
 
           theObject.onreadystatechange = function(){
             if(theObject.readyState == 4 && theObject.status == 200){
@@ -22,7 +23,7 @@ and open the template in the editor.
             }
           }
 
-          theObject.send();
+          theObject.send("username=Edwin&password=Secret");
       }
     </script>
     <button onclick="init()">Send Info</button>
