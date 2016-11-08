@@ -2,7 +2,7 @@
 
 $connection = mysqli_connect('localhost', 'root', 'mysql', 'AjaxPHP');
 
-if($connection){
-  echo "Yes you have connection";
-}
+$search = $_POST['search'];
+
+echo $search;
 
