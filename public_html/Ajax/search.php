@@ -11,5 +11,16 @@ if(!empty($search)){
   if(!$search_query){
     die('QUERY FAILED ' . mysqli_error($connection));
   }
+  ?>
+  <ul class="list-unstyled">
+  <?php
+  while($row = mysqli_fetch_array($search_query)){
+    $brand = $row['cars'];
+    echo "<li>{$brand} in stock</li>";
+  }
+  ?>
+  </ul>
+  <?php
 }
+?>
 
