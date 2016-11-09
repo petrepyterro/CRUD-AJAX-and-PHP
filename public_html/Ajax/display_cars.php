@@ -12,10 +12,16 @@ if(!$query_car_info){
 while($row = mysqli_fetch_array($query_car_info)){
   echo "<tr>";
   echo "<td>{$row['id']}</td>";
-  echo "<td>{$row['cars']}</td>";
+  echo "<td><a class='cars-link' href='javascript:void(0)'>{$row['cars']}</a></td>";
   echo "</tr>";
   
-}
+} ?>
+
+<script>
+  $('.cars-link').on('click', function(){
+    $('#action-container').show();
+  });
+</script>
 
 
 
