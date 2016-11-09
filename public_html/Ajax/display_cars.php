@@ -12,7 +12,7 @@ if(!$query_car_info){
 while($row = mysqli_fetch_array($query_car_info)){
   echo "<tr>";
   echo "<td>{$row['id']}</td>";
-  echo "<td><a class='cars-link' href='javascript:void(0)'>{$row['cars']}</a></td>";
+  echo "<td><a rel='" . $row['id'] ."'class='cars-link' href='javascript:void(0)'>{$row['cars']}</a></td>";
   echo "</tr>";
   
 } ?>
@@ -20,6 +20,11 @@ while($row = mysqli_fetch_array($query_car_info)){
 <script>
   $('.cars-link').on('click', function(){
     $('#action-container').show();
+    var id = $(this).attr("rel");
+    
+    $.post("process.php", {id: id}, function(data){
+      $('#action-container').html(data);
+    });
   });
 </script>
 
