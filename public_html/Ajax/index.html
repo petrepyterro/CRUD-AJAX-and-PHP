@@ -20,7 +20,8 @@
       <div class="row">
         <form class="col-xs-6" id="add-car-form" action="add_cars.php" method="POST">
           <div class="form-group">
-            <input type="text" name="car_name" class="form-control"/>
+            <label for="car_name">Add a Car</label>
+            <input type="text" name="car_name" class="form-control" required/>
           </div>
           <div class="form-group">
             <input type="submit" class="btn btn-primary" value="add car"/>
@@ -94,7 +95,7 @@
           var url = $(this).attr('action');
           
           $.post(url, postData, function(php_table_data){
-            $('#car-result').html();
+            $('#add-car-form')[0].reset();
           });
             
         }); //Add car code function ends
