@@ -18,7 +18,7 @@
         <h2 class="bg-success" id="result"></h2> 
       </div>
       <div class="row">
-        <form class="col-xs-6" id="add-car-form" action="">
+        <form class="col-xs-6" id="add-car-form" action="add_cars.php">
           <div class="form-group">
             <input type="text" name="car_name" class="form-control"/>
           </div>
@@ -45,6 +45,17 @@
               }    
             }  
           });    
+        });
+        
+        //This code add cars to database table cars
+        $('#add-car-form').submit(function(evt){
+          evt.preventDefault();
+          
+          var postData = $(this).serialize();
+          
+          var url = $(this).attr('action');
+          
+          console.log(postData);
         });
       })    
     </script>
