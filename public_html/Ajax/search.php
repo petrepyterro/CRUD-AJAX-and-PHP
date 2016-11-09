@@ -1,6 +1,6 @@
 <?php
 
-$connection = mysqli_connect('localhost', 'root', 'mysql', 'AjaxPHP');
+include 'db.php';
 
 $search = $_POST['search'];
 
