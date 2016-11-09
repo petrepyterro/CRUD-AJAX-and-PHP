@@ -18,7 +18,7 @@
         <h2 class="bg-success" id="result"></h2> 
       </div>
       <div class="row">
-        <form class="col-xs-6" id="add-car-form" action="add_cars.php">
+        <form class="col-xs-6" id="add-car-form" action="add_cars.php" method="POST">
           <div class="form-group">
             <input type="text" name="car_name" class="form-control"/>
           </div>
@@ -26,6 +26,12 @@
             <input type="submit" class="btn btn-primary" value="add car"/>
           </div>
         </form>
+        
+        <div class="col-xs-6">
+          <div id="car-result">
+            
+          </div>
+        </div>
       </div>
     </div>   
    
@@ -55,7 +61,10 @@
           
           var url = $(this).attr('action');
           
-          console.log(postData);
+          $.post(url, postData, function(php_table_data){
+            $('#car-result').html(php_table_data);
+          });
+            
         });
       })    
     </script>
