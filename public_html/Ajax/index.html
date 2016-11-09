@@ -54,15 +54,21 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.js"></script>
     <script>
       $(document).ready(function(){
-        $.ajax({
-          url: 'display_cars.php',
-          type: 'POST',
-          success: function(show_cars){
-            if(!show_cars.error){
-              $('#show-cars').html(show_cars);
+        setInterval(function(){
+          updateCars();
+        }, 1000);
+        
+        function updateCars(){
+          $.ajax({
+            url: 'display_cars.php',
+            type: 'POST',
+            success: function(show_cars){
+              if(!show_cars.error){
+                $('#show-cars').html(show_cars);
+              }
             }
-          }
-        });
+          });
+        }
         
         $('#search').keyup(function(){
           var search = $('#search').val();
