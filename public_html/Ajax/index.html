@@ -62,7 +62,7 @@
           var url = $(this).attr('action');
           
           $.post(url, postData, function(php_table_data){
-            $('#car-result').html(php_table_data);
+            $('#car-result').html();
           });
             
         });
