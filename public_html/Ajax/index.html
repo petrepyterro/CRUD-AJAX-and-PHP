@@ -59,7 +59,7 @@
           type: 'POST',
           success: function(show_cars){
             if(!show_cars.error){
-              $('#show-cars').html("HELLO IT WORKS");
+              $('#show-cars').html(show_cars);
             }
           }
         });
