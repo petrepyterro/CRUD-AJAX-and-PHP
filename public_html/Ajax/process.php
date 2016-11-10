@@ -13,9 +13,11 @@ if(isset($_POST['id'])){
   }
 
   while($row = mysqli_fetch_array($query_car_info)){
+    echo '<p id="feedback" class="bg-success"></p>';
     echo "<input rel='" . $row['id'] . "'type='text' class='form-control car_input' value='" . $row['cars'] . "'>";
     echo "<input type='button' class='btn btn-success update' value='Update'>";
     echo "<input type='button' class='btn btn-danger delete' value='Delete'>";
+    echo "<input type='button' class='btn btn-close' value='Close'>";
   }
 
 }
@@ -31,6 +33,18 @@ if(isset($_POST['updatethis'])){
     die("Query failed " . mysqli_error($connection));
   }
 }
+
+/******************** Deleting Data ********************/
+if(isset($_POST['deletethis'])){
+  $id = mysqli_real_escape_string($connection, $_POST['id']);
+  
+  $query = "DELETE FROM cars WHERE id=" . $id;
+  $result_set = mysqli_query($connection, $query);
+  if(!$result_set){
+    die("Query failed " . mysqli_error($connection));
+  }
+}
+
 ?>
 
 <script>
@@ -52,7 +66,21 @@ if(isset($_POST['updatethis'])){
       });
     });
       
+/***********Delete Button Function************/
+    $(".delete").on('click', function(){
+      if(confirm('Are you sure you want to delete this?')){
+        id = $(".car_input").attr("rel");
+        $.post("process.php", {id: id, deletethis: deletethis}, function(data){
+          $('#action-container').hide();  
+        });
+      }  
+    });    
     
-    
+    /***********Close Button Function************/  
+    $(".btn-close").on('click', function(){
+      $('#action-container').hide();
+    })
   });
+
+  
 </script>
